@@ -1,0 +1,28 @@
+# General
+.env
+.DS_Store
+
+# Node.js
+node_modules/
+dist/
+build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-wheel-metadata/
+.tox/
+.coverage
+.coverage.*
+.hypothesis/
+.pytest_cache/
+
+# AI Image Classifier specific
+dataset/
+catvsdog.py
+backend/cat_vs_dog_model.h5

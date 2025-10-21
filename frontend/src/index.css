@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* AuraLens AI Design System - Cyber Minimalism */
+    --background: 255 65% 7%;
+    --foreground: 240 33% 96%;
+
+    --card: 255 65% 7%;
+    --card-foreground: 240 33% 96%;
+
+    --popover: 255 50% 10%;
+    --popover-foreground: 240 33% 96%;
+
+    --primary: 320 100% 50%;
+    --primary-foreground: 240 33% 96%;
+
+    --secondary: 188 100% 50%;
+    --secondary-foreground: 255 65% 7%;
+
+    --muted: 248 15% 20%;
+    --muted-foreground: 248 8% 56%;
+
+    --accent: 320 100% 50%;
+    --accent-foreground: 240 33% 96%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 240 33% 96%;
+
+    --border: 248 15% 15%;
+    --input: 248 15% 15%;
+    --ring: 320 100% 50%;
+
+    --radius: 1rem;
+
+    /* Custom AuraLens tokens */
+    --glass-bg: 240 33% 96%;
+    --glass-opacity: 0.08;
+    --glow-magenta: 320 100% 50%;
+    --glow-cyan: 188 100% 50%;
+    --gradient-aura: linear-gradient(135deg, hsl(320 100% 50% / 0.3), hsl(188 100% 50% / 0.3));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism effect */
+  .glass {
+    background: hsl(var(--glass-bg) / var(--glass-opacity));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-bg) / 0.18);
+  }
+
+  /* Glow effects */
+  .glow-magenta {
+    box-shadow: 0 0 20px hsl(var(--glow-magenta) / 0.5),
+                0 0 40px hsl(var(--glow-magenta) / 0.3);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.5),
+                0 0 40px hsl(var(--glow-cyan) / 0.3);
+  }
+
+  /* Pulse animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Scan animation */
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  .animate-scan {
+    animation: scan 2s ease-in-out infinite;
+  }
+
+  /* Fade in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+}
