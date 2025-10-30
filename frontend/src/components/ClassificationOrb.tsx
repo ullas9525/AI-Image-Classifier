@@ -1,7 +1,7 @@
 import { ClassificationResult } from "./ResultsScreen";
 
 interface ClassificationOrbProps {
-  results: ClassificationResult[];
+  results: ClassificationResult[]; // Still an array, but now contains a single top result
 }
 
 export const ClassificationOrb = ({ results }: ClassificationOrbProps) => {
@@ -10,8 +10,9 @@ export const ClassificationOrb = ({ results }: ClassificationOrbProps) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
-  // Calculate angles for each segment
-  let currentAngle = -90; // Start from top
+  const topResult = results[0];
+  const confidencePercentage = topResult ? (topResult.confidence * 100).toFixed(0) : "0";
+  const strokeDashoffset = circumference - (parseFloat(confidencePercentage) / 100) * circumference;
 
   return (
     <div className="flex items-center justify-center">
@@ -28,7 +29,7 @@ export const ClassificationOrb = ({ results }: ClassificationOrbProps) => {
             opacity={0.1}
           />
 
-          {/* Classification segment (always 100% for the primary result) */}
+          {/* Classification segment */}
           <circle
             cx={size / 2}
             cy={size / 2}
@@ -37,7 +38,7 @@ export const ClassificationOrb = ({ results }: ClassificationOrbProps) => {
             stroke="hsl(var(--primary))"
             strokeWidth={strokeWidth}
             strokeDasharray={`${circumference} ${circumference}`}
-            strokeDashoffset={0}
+            strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
             style={{
               transform: `rotate(${-90}deg)`,
@@ -53,7 +54,7 @@ export const ClassificationOrb = ({ results }: ClassificationOrbProps) => {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <div className="text-6xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent mb-1">
-              100
+              {confidencePercentage}
               <span className="text-3xl">%</span>
             </div>
             <div className="text-xs text-muted-foreground font-medium">MATCH</div>

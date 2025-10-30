@@ -1,42 +1,50 @@
+/* Styles for the main root element of the application */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: 1280px; /* Set maximum width for the content */
+  margin: 0 auto; /* Center the content horizontally */
+  padding: 2rem; /* Add padding around the content */
+  text-align: center; /* Center-align text within the root */
 }
 
+/* Styles for logo images */
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  height: 6em; /* Set the height of the logo */
+  padding: 1.5em; /* Add padding around the logo */
+  will-change: filter; /* Optimize for filter changes */
+  transition: filter 300ms; /* Smooth transition for filter changes */
 }
+/* Hover effect for logos */
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #646cffaa); /* Add a drop shadow on hover */
 }
+/* Specific hover effect for React logos */
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #61dafbaa); /* Add a different drop shadow for React logos */
 }
 
+/* Keyframe animation for logo spinning */
 @keyframes logo-spin {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg); /* Starting rotation angle */
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg); /* Ending rotation angle */
   }
 }
 
+/* Apply logo spin animation if reduced motion is not preferred */
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+    animation: logo-spin infinite 20s linear; /* Apply infinite spinning animation */
   }
 }
 
+/* Styles for card elements */
 .card {
-  padding: 2em;
+  padding: 2em; /* Add padding inside card elements */
 }
 
+/* Styles for "read the docs" link */
 .read-the-docs {
-  color: #888;
+  color: #888; /* Set text color to a light grey */
 }

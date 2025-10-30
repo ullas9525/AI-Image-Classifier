@@ -2,12 +2,7 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar"; // Import the new Navbar component
 import { WelcomeScreen } from "@/components/WelcomeScreen";
 import { AnalysisScreen } from "@/components/AnalysisScreen";
-import { ResultsScreen } from "@/components/ResultsScreen";
-
-interface ClassificationResult {
-  prediction: string;
-  confidence: number;
-}
+import { ResultsScreen, ClassificationResult } from "@/components/ResultsScreen"; // Import ClassificationResult from ResultsScreen
 import { useToast } from "@/hooks/use-toast";
 
 type Screen = "welcome" | "analyzing" | "results";
@@ -15,7 +10,7 @@ type Screen = "welcome" | "analyzing" | "results";
 const Index = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>("welcome");
   const [imageUrl, setImageUrl] = useState<string>("");
-  const [results, setResults] = useState<ClassificationResult[]>([]);
+  const [results, setResults] = useState<ClassificationResult | null>(null); // results is now a single object or null
   const { toast } = useToast();
 
   const handleImageSelect = async (file: File) => {
@@ -37,7 +32,7 @@ const Index = () => {
       }
 
       const data: ClassificationResult = await response.json();
-      setResults([data]); // Wrap the single result in an array for ResultsScreen
+      setResults(data); // Set the single result object directly
       setCurrentScreen("results");
     } catch (error) {
       console.error("Error classifying image:", error);
@@ -53,7 +48,7 @@ const Index = () => {
   const handleNewScan = () => {
     setCurrentScreen("welcome");
     setImageUrl("");
-    setResults([]);
+    setResults(null); // Set to null instead of empty array
   };
 
   const handleSaveToHistory = () => {

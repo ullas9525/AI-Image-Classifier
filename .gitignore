@@ -26,3 +26,4 @@ pip-wheel-metadata/
 dataset/
 catvsdog.py
 backend/cat_vs_dog_model.h5
+backend/breed_classifier_model.h5
